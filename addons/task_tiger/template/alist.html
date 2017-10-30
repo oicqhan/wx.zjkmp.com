@@ -1,0 +1,69 @@
+{template 'common/header'}
+<!--{template 'tabs'}-->
+<ul class="nav nav-tabs">
+
+    <li class="active"><a href="{php echo $this->createWebUrl('account',array('pid'=>$pid))}">公众号管理</a></li>
+
+</ul>
+<style>
+th{
+	text-align: center !important;
+}
+
+td{
+	text-align: center !important;
+	white-space: normal !important;
+	word-break: break-all !important;
+}
+</style>
+<a href="{php echo $this->createWebUrl('acreate')}" class="btn btn-success  active" role="button" style="margin-bottom:6px;">添加公众号</a>
+<div class="panel panel-default">
+
+	<div class="panel-body" style="text-align: center;">
+
+        <table class="table table-hover">
+
+            <thead class="navbar-inner">
+
+                <tr>
+
+                    <th>公众号名称</th>
+                    <th>ID</th>
+                    <th>OpenID</th>
+                    <th>分组</th>
+                    <th>操作</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="table_content">
+
+                {loop $list $l}
+
+                <tr>
+
+                    <td>{$l['name']}</td>
+                    <td>{$l['account']}</td>
+                    <td>{$l['original']}</td>
+                    <td>{$l['group']}</td>
+                    <td>
+                        <a href='{php echo $this->createWebUrl("account",array("op"=>"delete","acid"=>$l["acid"]))}' onclick="return confirm('删除后将不可恢复，确定删除吗？')" class="btn btn-danger btn-sm">删除</a>
+                    </td>
+
+                </tr>
+
+                {/loop}
+
+            </tbody>
+
+        </table>
+
+        {$pager}
+
+    </div>
+
+</div>
+<!--a href="{php echo $this->createWebUrl('qingkong')}" onclick="return confirm('清空后将不可恢复，确定清空吗？')" class="btn btn-danger btn-sm" role="button" style="margin-bottom:6px;">清空海报缓存</a-->
+
+{template 'common/footer'}
